@@ -6,7 +6,7 @@ import { DISHES } from '../shared/dishes';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import Home from './HomeComponent';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Link, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import Contact from './ContactComponent';
 
 import { COMMENTS } from '../shared/comments';
@@ -37,6 +37,15 @@ class Main extends Component {
                 />
             );
         }
+
+        const DishWithId = () => {
+            const { dishId } = useParams();
+            return (
+                <DishDetail dish={this.state.dishes.filter((dish) => dish.id === parseInt(dishId, 10))[0]}
+                    comments={this.state.comments.filter((comment) => comment.dishId === parseInt(dishId, 10))} />
+            );
+        };
+
         return (
             <div>
                 <Header />
@@ -45,6 +54,7 @@ class Main extends Component {
                     <Route exact path='/menu' element={<Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />} />
                     <Route path="/home" element={<Navigate to="/Menu" />} />
                     <Route exact path='/contactus' Component={Contact} />
+                    <Route path='/menu/:dishId' component={DishWithId} />
                 </Routes>
 
 
