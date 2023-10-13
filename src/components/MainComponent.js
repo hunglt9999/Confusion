@@ -52,9 +52,9 @@ class Main extends Component {
                 <Routes>
                     <Route path='/home' Component={HomePage} />
                     <Route exact path='/menu' element={<Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />} />
-                    <Route path="/home" element={<Navigate to="/Menu" />} />
+                    <Route path="/" element={<Navigate to="/home" />} />
                     <Route exact path='/contactus' Component={Contact} />
-                    <Route path='/menu/:dishId' component={DishWithId} />
+                    <Route path='/menu/:dishId' Component={DishWithId} />
                 </Routes>
 
 
